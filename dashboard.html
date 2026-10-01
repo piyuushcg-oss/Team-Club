@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlipMato Layout Mockup</title>
+    <style>
+        /* CSS resets for basic consistency */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f7f9fc;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: #fff;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .search-container {
+            flex-grow: 1;
+            max-width: 600px;
+            margin: 0 50px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* --- Main Categories Nav --- */
+        .category-nav {
+            background-color: #fff;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .category-item {
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .category-item img {
+            width: 50px;
+            height: 50px;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+        /* --- Hero Banners --- */
+        .promo-banners {
+            display: flex;
+            gap: 20px;
+            margin: 30px auto;
+            max-width: 1100px;
+        }
+
+        .banner {
+            flex: 1;
+            padding: 30px;
+            border-radius: 10px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Basic colors - in a real site, these are background images */
+        .banner.left { background-color: #f08080; } 
+        .banner.right { background-color: #ffdab9; color: #333;}
+
+        .shop-now-btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            align-self: flex-start;
+        }
+
+        /* --- Main Content --- */
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card-group h3 {
+            margin-bottom: 15px;
+        }
+
+        .card-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            gap: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .item-card {
+            flex: 1;
+            text-align: center;
+        }
+
+        .item-card img {
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #fff;
+            padding: 30px 50px;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo">FlipMato</div>
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search for products, dishes, or restaurants...">
+        </div>
+        <div class="header-actions">
+            <div>📍 Location</div>
+            <div>👤 Login/User</div>
+        </div>
+    </header>
+
+    <!-- Main Navigation Section -->
+    <nav class="category-nav">
+        <div class="category-item">
+            <img src="https://via.placeholder.com/50" alt="Food Delivery">
+            <span>Food Delivery</span>
+        </div>
+        <div class="category-item">
+            <img src="https://via.placeholder.com/50" alt="Electronics">
+            <span>Electronics</span>
+        </div>
+        <div class="category-item">
+            <img src="https://via.placeholder.com/50" alt="Fashion">
+            <span>Fashion</span>
+        </div>
+        <div class="category-item">
+            <img src="https://via.placeholder.com/50" alt="Dine-out">
+            <span>Dine-out</span>
+        </div>
+        <div class="category-item">
+            <img src="https://via.placeholder.com/50" alt="Groceries">
+            <span>Groceries</span>
+        </div>
+    </nav>
+
+    <!-- Hero Promo Banners Section -->
+    <section class="promo-banners">
+        <div class="banner left">
+            <h2>Up to 70% off <br>on styles</h2>
+            <button class="shop-now-btn">Shop now</button>
+        </div>
+        <div class="banner right">
+            <h2>50% off <br>near you</h2>
+            <button class="shop-now-btn">Shop now</button>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <main>
+        <!-- Left Side: Order Food -->
+        <div class="card-group">
+            <h3>Order Food</h3>
+            <div class="card-container">
+                <div class="item-card">
+                    <img src="https://via.placeholder.com/150" alt="Food Item">
+                    <p>Royal Kitchen</p>
+                </div>
+                <div class="item-card">
+                    <img src="https://via.placeholder.com/150" alt="Food Item">
+                    <p>Spice Street</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Shop Products -->
+        <div class="card-group">
+            <h3>Shop Products</h3>
+            <div class="card-container">
+                <div class="item-card">
+                    <img src="https://via.placeholder.com/150" alt="Phone">
+                    <p>New Mobiles</p>
+                </div>
+                <div class="item-card">
+                    <img src="https://via.placeholder.com/150" alt="Shoes">
+                    <p>Shoes under ₹999</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">Location</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="footer-actions">
+            <!-- Placeholders for footer icons -->
+            <span>🔔</span>
+            <span>👤</span>
+        </div>
+    </footer>
+
+</body>
+</html>
