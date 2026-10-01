@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    min-height: 100vh;
+    color: #ffffff;
+}
+
+
+/* =========================
+   MAIN BACKGROUND
+========================= */
+
+.page {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 50px;
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(83, 56, 255, 0.35),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(0, 180, 255, 0.25),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #07091d,
+            #101438,
+            #07091d
+        );
+}
+
+
+/* =========================
+   BACKGROUND CIRCLES
+========================= */
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(3px);
+    pointer-events: none;
+}
+
+.circle-one {
+    width: 280px;
+    height: 280px;
+
+    background: rgba(92, 68, 255, 0.16);
+
+    top: -100px;
+    left: -80px;
+}
+
+.circle-two {
+    width: 350px;
+    height: 350px;
+
+    background: rgba(0, 183, 255, 0.12);
+
+    right: -120px;
+    bottom: -120px;
+}
+
+.circle-three {
+    width: 150px;
+    height: 150px;
+
+    background: rgba(161, 91, 255, 0.14);
+
+    right: 20%;
+    top: 10%;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.signup-container {
+
+    width: min(1100px, 100%);
+
+    min-height: 680px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    background: rgba(255,255,255,0.07);
+
+    backdrop-filter: blur(25px);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.45),
+        inset 0 1px rgba(255,255,255,0.12);
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================
+   LEFT HERO SECTION
+========================= */
+
+.hero-section {
+
+    position: relative;
+
+    min-height: 680px;
+
+    overflow: hidden;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(10, 14, 45, 0.92),
+            rgba(31, 41, 108, 0.75)
+        );
+}
+
+
+/* Decorative grid */
+
+.hero-section::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+
+        linear-gradient(
+            rgba(255,255,255,0.04) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.04) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    opacity: 0.5;
+}
+
+
+/* Blue glow */
+
+.hero-section::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 400px;
+    height: 400px;
+
+    background: #315cff;
+
+    border-radius: 50%;
+
+    filter: blur(120px);
+
+    opacity: 0.25;
+
+    right: -200px;
+    bottom: -200px;
+}
+
+
+/* =========================
+   HERO CONTENT
+========================= */
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    height: 100%;
+
+    padding: 50px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+
+
+/* Logo */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.logo-box {
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #6c63ff,
+        #00c6ff
+    );
+
+    box-shadow:
+        0 8px 25px rgba(80,100,255,0.4);
+}
+
+.logo-dot {
+    color: #6f8cff;
+}
+
+
+/* Hero text */
+
+.hero-text {
+    margin-top: 100px;
+}
+
+.small-text {
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    color: #aeb8df;
+
+    margin-bottom: 18px;
+}
+
+.hero-text h1 {
+
+    font-size: clamp(48px, 5vw, 72px);
+
+    line-height: 1;
+
+    letter-spacing: -4px;
+
+    margin-bottom: 28px;
+}
+
+.hero-text h1 span {
+
+    display: block;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #728cff,
+        #39c8ff
+    );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+}
+
+.description {
+
+    max-width: 380px;
+
+    color: #bdc5e5;
+
+    line-height: 1.8;
+
+    font-size: 15px;
+}
+
+
+/* Hero bottom */
+
+.hero-bottom {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    color: #aab3d6;
+
+    font-size: 13px;
+}
+
+.hero-bottom span {
+
+    width: 45px;
+
+    height: 2px;
+
+    background: #6e83ff;
+}
+
+
+/* =========================
+   FORM SECTION
+========================= */
+
+.form-section {
+
+    background: rgba(255,255,255,0.96);
+
+    color: #15182a;
+
+    padding: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* =========================
+   FORM WRAPPER
+========================= */
+
+.form-wrapper {
+
+    width: 100%;
+
+    max-width: 440px;
+}
+
+
+/* Heading */
+
+.top-text {
+    text-align: center;
+
+    margin-bottom: 28px;
+}
+
+.top-text p {
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    font-weight: 700;
+
+    color: #6571a0;
+
+    margin-bottom: 10px;
+}
+
+.top-text h2 {
+
+    font-size: 34px;
+
+    text-transform: uppercase;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 10px;
+}
+
+.top-text span {
+
+    font-size: 13px;
+
+    color: #7c8191;
+}
+
+.top-text a {
+
+    color: #4e62e8;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+.top-text a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+.input-group {
+
+    margin-bottom: 17px;
+}
+
+.input-group label {
+
+    display: block;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    margin-bottom: 7px;
+
+    color: #32364c;
+}
+
+.input-box {
+
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    border: 1px solid #dfe2eb;
+
+    border-radius: 9px;
+
+    background: #fafbfe;
+
+    transition: 0.25s;
+}
+
+.input-box:focus-within {
+
+    border-color: #5870ff;
+
+    box-shadow:
+        0 0 0 4px rgba(88,112,255,0.10);
+
+    background: #ffffff;
+}
+
+.input-icon {
+
+    width: 45px;
+
+    text-align: center;
+
+    font-size: 15px;
+
+    opacity: 0.55;
+}
+
+.input-box input {
+
+    width: 100%;
+
+    height: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #22253a;
+
+    font-size: 13px;
+
+    padding-right: 12px;
+}
+
+.input-box input::placeholder {
+    color: #a7abb8;
+}
+
+
+/* Password button */
+
+.show-password {
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    margin-right: 12px;
+
+    opacity: 0.55;
+
+    transition: 0.2s;
+}
+
+.show-password:hover {
+    opacity: 1;
+}
+
+
+/* =========================
+   TERMS
+========================= */
+
+.terms {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    margin: 20px 0;
+
+    font-size: 11px;
+
+    color: #777c8e;
+
+    line-height: 1.5;
+}
+
+.terms input {
+
+    margin-top: 3px;
+
+    accent-color: #566df3;
+}
+
+.terms a {
+
+    color: #5065dc;
+
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   SIGNUP BUTTON
+========================= */
+
+.signup-btn {
+
+    width: 100%;
+
+    height: 52px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 15px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #4d63e8,
+            #7259ed
+        );
+
+    box-shadow:
+        0 10px 25px rgba(79,95,224,0.25);
+
+    transition: 0.25s;
+}
+
+.signup-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 30px rgba(79,95,224,0.35);
+}
+
+.arrow {
+
+    font-size: 20px;
+
+    transition: 0.25s;
+}
+
+.signup-btn:hover .arrow {
+    transform: translateX(5px);
+}
+
+
+/* =========================
+   DIVIDER
+========================= */
+
+.divider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 25px 0 18px;
+}
+
+.divider span {
+
+    height: 1px;
+
+    background: #e4e5ea;
+
+    flex: 1;
+}
+
+.divider p {
+
+    font-size: 9px;
+
+    color: #a0a4b0;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   SOCIAL BUTTONS
+========================= */
+
+.social-buttons {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 10px;
+}
+
+.social-btn {
+
+    height: 43px;
+
+    background: white;
+
+    border: 1px solid #e2e4eb;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    color: #35394c;
+
+    transition: 0.2s;
+}
+
+.social-btn:hover {
+
+    border-color: #8b96e9;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 15px rgba(0,0,0,0.07);
+}
+
+.google {
+    color: #4285f4;
+    font-weight: 800;
+}
+
+.apple {
+    color: #111;
+}
+
+.github {
+    color: #111;
+}
+
+
+/* =========================
+   BOTTOM TEXT
+========================= */
+
+.bottom-text {
+
+    text-align: center;
+
+    font-size: 9px;
+
+    color: #a1a5b2;
+
+    margin-top: 22px;
+}
+
+.bottom-text strong {
+    color: #71778a;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 900px) {
+
+    .page {
+        padding: 25px;
+    }
+
+    .signup-container {
+
+        grid-template-columns: 1fr;
+
+        max-width: 600px;
+    }
+
+    .hero-section {
+        min-height: 330px;
+    }
+
+    .hero-content {
+        padding: 35px;
+    }
+
+    .hero-text {
+        margin-top: 40px;
+    }
+
+    .hero-text h1 {
+        font-size: 48px;
+    }
+
+    .hero-bottom {
+        display: none;
+    }
+
+    .form-section {
+        padding: 40px 30px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .page {
+        padding: 12px;
+    }
+
+    .signup-container {
+        border-radius: 18px;
+    }
+
+    .hero-section {
+        min-height: 280px;
+    }
+
+    .hero-content {
+        padding: 25px;
+    }
+
+    .hero-text h1 {
+        font-size: 40px;
+    }
+
+    .description {
+        font-size: 13px;
+    }
+
+    .form-section {
+        padding: 30px 20px;
+    }
+
+    .top-text h2 {
+        font-size: 27px;
+    }
+
+    .social-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .social-btn {
+        height: 45px;
+    }
+}
+    </style>
+</head>
+
+
+<body>
+
+    <main class="page">
+
+        <!-- Background decorations -->
+        <div class="circle circle-one"></div>
+        <div class="circle circle-two"></div>
+        <div class="circle circle-three"></div>
+
+        <section class="signup-container">
+
+            <!-- LEFT SIDE -->
+            <div class="hero-section">
+
+                <div class="hero-overlay"></div>
+
+                <div class="hero-content">
+
+                    <div class="logo">
+                        <span class="logo-box">D</span>
+                        <span>DESIGN<span class="logo-dot">.</span></span>
+                    </div>
+
+                    <div class="hero-text">
+                        <p class="small-text">WELCOME TO YOUR</p>
+
+                        <h1>
+                            Creative
+                            <span>Journey.</span>
+                        </h1>
+
+                        <p class="description">
+                            Build beautiful experiences,
+                            explore new ideas and bring
+                            your creativity to life.
+                        </p>
+                    </div>
+
+                    <div class="hero-bottom">
+                        <span></span>
+                        <p>Design. Create. Inspire.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT SIDE -->
+            <div class="form-section">
+
+                <div class="form-wrapper">
+
+                    <div class="top-text">
+                        <p>START YOUR CREATIVE JOURNEY</p>
+
+                        <h2>Create an account</h2>
+
+                        <span>
+                            Already have an account?
+                            <a href="#">Log in</a>
+                        </span>
+                    </div>
+
+
+                    <!-- FORM -->
+                    <form>
+
+                        <!-- Full Name -->
+                        <div class="input-group">
+
+                            <label for="name">
+                                Full Name
+                            </label>
+
+                            <div class="input-box">
+
+                                <span class="input-icon">👤</span>
+
+                                <input
+                                    type="text"
+                                    id="name"
+                                    placeholder="Enter your full name"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Email -->
+                        <div class="input-group">
+
+                            <label for="email">
+                                Email Address
+                            </label>
+
+                            <div class="input-box">
+
+                                <span class="input-icon">✉</span>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="Enter your email"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Password -->
+                        <div class="input-group">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+                            <div class="input-box">
+
+                                <span class="input-icon">🔒</span>
+
+                                <input
+                                    type="password"
+                                    id="password"
+                                    placeholder="Create a password"
+                                >
+
+                                <button
+                                    type="button"
+                                    class="show-password"
+                                    onclick="showPassword()"
+                                >
+                                    👁
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Confirm Password -->
+                        <div class="input-group">
+
+                            <label for="confirm-password">
+                                Confirm Password
+                            </label>
+
+                            <div class="input-box">
+
+                                <span class="input-icon">🔒</span>
+
+                                <input
+                                    type="password"
+                                    id="confirm-password"
+                                    placeholder="Confirm your password"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Terms -->
+                        <div class="terms">
+
+                            <input type="checkbox" id="terms">
+
+                            <label for="terms">
+                                I agree to the
+                                <a href="#">Terms & Conditions</a>
+                                and
+                                <a href="#">Privacy Policy</a>
+                            </label>
+
+                        </div>
+
+
+                        <!-- Sign Up Button -->
+                        <button class="signup-btn" type="submit">
+
+                            <span>Create Account</span>
+
+                            <span class="arrow">→</span>
+
+                        </button>
+
+                    </form>
+
+
+                    <!-- Divider -->
+                    <div class="divider">
+
+                        <span></span>
+
+                        <p>OR CONTINUE WITH</p>
+
+                        <span></span>
+
+                    </div>
+
+
+                    <!-- Social Login -->
+                    <div class="social-buttons">
+
+                        <button class="social-btn">
+                            <span class="google">G</span>
+                            Google
+                        </button>
+
+                        <button class="social-btn">
+                            <span class="apple">●</span>
+                            Apple
+                        </button>
+
+                        <button class="social-btn">
+                            <span class="github">◉</span>
+                            GitHub
+                        </button>
+
+                    </div>
+
+
+                    <p class="bottom-text">
+                        Your information is protected with
+                        <strong>256-bit encryption</strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        function showPassword() {
+
+            const password =
+                document.getElementById("password");
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+            } else {
+
+                password.type = "password";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
