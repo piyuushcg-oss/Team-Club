@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlipMato Clone</title>
+  <!-- Google Fonts & FontAwesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ==================== GLOBAL STYLES ==================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background-color: #f8fafc;
+      color: #334155;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      align-items: center;
+    }
+
+    /* Container for layout alignment */
+    .container {
+      width: 100%;
+      max-width: 980px;
+      padding: 0 16px;
+    }
+
+    /* ==================== HEADER ==================== */
+    header {
+      width: 100%;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    .header-content {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Logo */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+      user-select: none;
+    }
+
+    .logo-cart {
+      color: #0284c7;
+      font-size: 24px;
+    }
+
+    .logo-text-flip {
+      color: #0284c7;
+    }
+
+    .logo-z {
+      display: inline-block;
+      background: #e11d48;
+      color: white;
+      padding: 0px 6px;
+      border-radius: 4px;
+      font-style: italic;
+      transform: skewX(-10deg);
+      font-size: 22px;
+      margin: 0 1px;
+    }
+
+    .logo-text-mato {
+      color: #e11d48;
+    }
+
+    .logo-cutlery {
+      color: #e11d48;
+      font-size: 20px;
+      margin-left: 2px;
+    }
+
+    /* Header Controls Right */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #475569;
+    }
+
+    .header-action-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .header-action-item:hover {
+      color: #0284c7;
+    }
+
+    .bell-icon-wrap {
+      position: relative;
+    }
+
+    .badge {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      background-color: #e11d48;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      height: 15px;
+      width: 15px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ==================== SEARCH BAR ==================== */
+    .search-section {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 580px;
+    }
+
+    .search-wrapper i {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      font-size: 15px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 18px 12px 46px;
+      border-radius: 30px;
+      border: 1px solid #cbd5e1;
+      outline: none;
+      font-size: 14px;
+      color: #334155;
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      transition: all 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: #0284c7;
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+
+    .search-input::placeholder {
+      color: #94a3b8;
+    }
+
+    /* ==================== CATEGORIES ==================== */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+
+    .category-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .category-icon-box {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+    }
+
+    .category-card:hover .category-icon-box {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .category-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+      text-align: center;
+    }
+
+    /* Colors for category boxes */
+    .bg-food { background-color: #ffedd5; color: #ea580c; }
+    .bg-electronics { background-color: #bae6fd; color: #0284c7; }
+    .bg-fashion { background-color: #ddd6fe; color: #7c3aed; }
+    .bg-dineout { background-color: #fecdd3; color: #e11d48; }
+    .bg-groceries { background-color: #dcfce7; color: #16a34a; }
+    .bg-home { background-color: #c7d2fe; color: #4f46e5; }
+
+    /* ==================== BANNER SLIDER ==================== */
+    .banner-container {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .banner-card {
+      border-radius: 14px;
+      overflow: hidden;
+      height: 160px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px;
+      color: white;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .banner-left {
+      background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+      color: #0f172a;
+    }
+
+    .banner-right {
+      background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
+      color: white;
+    }
+
+    .banner-info {
+      z-index: 2;
+      max-width: 55%;
+    }
+
+    .banner-title {
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .banner-btn {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s;
+    }
+
+    .banner-btn-dark {
+      background-color: #0f172a;
+      color: #ffffff;
+    }
+
+    .banner-btn-red {
+      background-color: #e11d48;
+      color: #ffffff;
+    }
+
+    .banner-btn:hover {
+      opacity: 0.9;
+    }
+
+    .banner-img {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 50%;
+      object-fit: cover;
+    }
+
+    /* Carousel Controls */
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      color: #475569;
+      font-size: 12px;
+    }
+
+    .slider-arrow-left { left: -12px; }
+    .slider-arrow-right { right: -12px; }
+
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: -12px;
+      margin-bottom: 24px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #cbd5e1;
+    }
+
+    .dot.active {
+      background-color: #334155;
+      width: 8px;
+      height: 8px;
+    }
+
+    /* ==================== TWO COLUMN SECTIONS ==================== */
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .section-card {
+      background-color: #ffffff;
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border: 1px solid #f1f5f9;
+    }
+
+    .section-header {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 14px;
+    }
+
+    /* Order Food Items Grid */
+    .food-items-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .food-item-card {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #f1f5f9;
+      background: #fafafa;
+    }
+
+    .food-img {
+      width: 100%;
+      height: 90px;
+      object-fit: cover;
+    }
+
+    .food-info {
+      padding: 8px 10px;
+    }
+
+    .food-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .food-subtitle {
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    .food-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    .star-rating {
+      color: #15803d;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    /* Shop Products Horizontal Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      background-color: #f8fafc;
+      padding: 12px;
+      border-radius: 10px;
+    }
+
+    .product-item {
+      background: white;
+      border-radius: 8px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      border: 1px solid #e2e8f0;
+    }
+
+    .product-menu-dots {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      color: #94a3b8;
+      font-size: 10px;
+      cursor: pointer;
+    }
+
+    .product-img {
+      height: 60px;
+      width: 100%;
+      object-fit: contain;
+      margin-bottom: 8px;
+      margin-top: 4px;
+    }
+
+    .product-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #334155;
+      line-height: 1.2;
+    }
+
+    .product-sub {
+      font-size: 10px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    /* ==================== FAVORITES & DEALS ==================== */
+    .fav-deals-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .fav-card {
+      background-color: #f8fafc;
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid #f1f5f9;
+    }
+
+    .fav-text-label {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .fav-text-main {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .fav-thumbnails {
+      display: flex;
+      gap: 6px;
+    }
+
+    .fav-thumb {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .wishlist-card {
+      background-color: #fff1f2;
+    }
+
+    /* ==================== BANNER BOTTOM ==================== */
+    .banner-bottom {
+      background: linear-gradient(90deg, #1e3a8a 0%, #1d4ed8 50%, #1e3a8a 100%);
+      border-radius: 10px;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .banner-bottom-text {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+    }
+
+    .banner-bottom-text span {
+      color: #60a5fa;
+    }
+
+    .banner-illustration {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .delivery-icon {
+      font-size: 28px;
+      color: #ef4444;
+    }
+
+    /* ==================== FOOTER ==================== */
+    footer {
+      width: 100%;
+      background-color: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      padding: 16px 0;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .footer-location {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      color: #475569;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #0284c7;
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 14px;
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    .footer-icons i {
+      cursor: pointer;
+    }
+
+    .footer-icons i:hover {
+      color: #0284c7;
+    }
+
+    /* Responsive Breakdown */
+    @media (max-width: 768px) {
+      .categories-grid { grid-template-columns: repeat(3, 1fr); }
+      .banner-container, .two-col-grid, .fav-deals-grid { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .banner-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .footer-content { flex-direction: column; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header>
+    <div class="container header-content">
+      <!-- Logo -->
+      <a href="#" class="logo-container">
+        <i class="fa-solid fa-cart-shopping logo-cart"></i>
+        <span class="logo-text-flip">Flip</span>
+        <span class="logo-z">Z</span>
+        <span class="logo-text-mato">Mato</span>
+        <i class="fa-solid fa-utensils logo-cutlery"></i>
+      </a>
+
+      <!-- Header Right -->
+      <div class="header-actions">
+        <div class="header-action-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Locations</span>
+        </div>
+        <div class="header-action-item bell-icon-wrap">
+          <i class="fa-regular fa-bell"></i>
+          <span class="badge">0</span>
+        </div>
+        <div class="header-action-item">
+          <i class="fa-regular fa-user"></i>
+          <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="container">
+
+    <!-- Search Section -->
+    <section class="search-section">
+      <div class="search-wrapper">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" class="search-input" placeholder="Search for products, dishes, or restaurants...">
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-grid">
+      <a href="#" class="category-card">
+        <div class="category-icon-box bg-food">
+          <i class="fa-solid fa-burger"></i>
+        </div>
+        <span class="category-title">Food Delivery</span>
+      </a>
+
+      <a href="#" class="category-card">
+        <div class="category-icon-box bg-electronics">
+          <i class="fa-solid fa-laptop"></i>
+        </div>
+        <span class="category-title">Electronics</span>
+      </a>
+
+      <a href="#" class="category-card">
+        <div class="category-icon-box bg-fashion">
+          <i class="fa-solid fa-shirt"></i>
+        </div>
+        <span class="category-title">Fashion</span>
+      </a>
+
+      <a href="#" class="category-card">
+        <div class="category-icon-box bg-dineout">
+          <i class="fa-solid fa-utensils"></i>
+        </div>
+        <span class="category-title">Dine-out</span>
+      </a>
+
+      <a href="#" class="category-card">
+        <div class="category-icon-box bg-groceries">
+          <i class="fa-solid fa-basket-shopping"></i>
+        </div>
+        <span class="category-title">Groceries</span>
+      </a>
+
+      <a href="#" class="category-card">
+        <div class="category-icon-box bg-home">
+          <i class="fa-solid fa-couch"></i>
+        </div>
+        <span class="category-title">Home & Kitchen</span>
+      </a>
+    </section>
+
+    <!-- Banners Slider Section -->
+    <section style="position: relative;">
+      <div class="slider-arrow slider-arrow-left">
+        <i class="fa-solid fa-chevron-left"></i>
+      </div>
+      <div class="slider-arrow slider-arrow-right">
+        <i class="fa-solid fa-chevron-right"></i>
+      </div>
+
+      <div class="banner-container">
+        <!-- Banner 1 -->
+        <div class="banner-card banner-left">
+          <div class="banner-info">
+            <h2 class="banner-title">Up to 70% off<br>on styles</h2>
+            <button class="banner-btn banner-btn-dark">Shop now</button>
+          </div>
+          <img class="banner-img" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Fashion Styles">
+        </div>
+
+        <!-- Banner 2 -->
+        <div class="banner-card banner-right">
+          <div class="banner-info">
+            <h2 class="banner-title">50% off<br>near you</h2>
+            <button class="banner-btn banner-btn-red">Shop now</button>
+          </div>
+          <img class="banner-img" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" alt="Pizza Promo">
+        </div>
+      </div>
+
+      <!-- Pagination Dots -->
+      <div class="slider-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </section>
+
+    <!-- Two-Column Section: Order Food & Shop Products -->
+    <section class="two-col-grid">
+      
+      <!-- Order Food Block -->
+      <div class="section-card">
+        <h3 class="section-header">Order Food</h3>
+        <div class="food-items-grid">
+          
+          <!-- Food Card 1 -->
+          <div class="food-item-card">
+            <img class="food-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80" alt="Royal Kitchen">
+            <div class="food-info">
+              <div class="food-title">Royal Kitchen</div>
+              <div class="food-subtitle">Local Restaurants</div>
+              <div class="food-meta">
+                <span class="star-rating"><i class="fa-solid fa-star"></i> 4m</span>
+                <span>12.2 mi</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Food Card 2 -->
+          <div class="food-item-card">
+            <img class="food-img" src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=400&q=80" alt="Spice Street">
+            <div class="food-info">
+              <div class="food-title">Spice Street</div>
+              <div class="food-subtitle">Local Restaurants</div>
+              <div class="food-meta">
+                <span class="star-rating"><i class="fa-solid fa-star"></i> 8m</span>
+                <span>13.8 mi</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Shop Products Block -->
+      <div class="section-card">
+        <h3 class="section-header">Shop Products</h3>
+        <div class="products-grid">
+          
+          <!-- Product 1 -->
+          <div class="product-item">
+            <i class="fa-solid fa-ellipsis-vertical product-menu-dots"></i>
+            <img class="product-img" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=200&q=80" alt="Mobiles">
+            <div class="product-title">New Mobiles</div>
+            <div class="product-sub">Shoes under ₹999</div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="product-item">
+            <img class="product-img" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=200&q=80" alt="Shoes">
+            <div class="product-title">Shoes under</div>
+            <div class="product-sub">₹999</div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="product-item">
+            <img class="product-img" src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=200&q=80" alt="Laptop">
+            <div class="product-title">Shoes</div>
+            <div class="product-sub">₹999</div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="product-item">
+            <img class="product-img" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=200&q=80" alt="Review">
+            <div class="product-title">Review</div>
+            <div class="product-sub">₹899</div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Favorites & Deals Block -->
+    <section class="section-card" style="margin-bottom: 20px;">
+      <h3 class="section-header">Your Favorites & Deals</h3>
+      <div class="fav-deals-grid">
+        
+        <!-- Try Again Card -->
+        <div class="fav-card">
+          <div>
+            <div class="fav-text-label">Try again:</div>
+            <div class="fav-text-main">Domino's Pizza</div>
+          </div>
+          <div class="fav-thumbnails">
+            <img class="fav-thumb" src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=150&q=80" alt="Pizza 1">
+            <img class="fav-thumb" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=150&q=80" alt="Pizza 2">
+          </div>
+        </div>
+
+        <!-- Wishlist Item Card -->
+        <div class="fav-card wishlist-card">
+          <div>
+            <div class="fav-text-label">Wishlist item:</div>
+            <div class="fav-text-main">Bluetooth Speaker - ₹1499</div>
+          </div>
+          <div class="fav-thumbnails">
+            <img class="fav-thumb" src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=150&q=80" alt="Speaker">
+            <img class="fav-thumb" src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=150&q=80" alt="Pizza">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FlipMato Plus Bottom Banner -->
+    <section class="banner-bottom">
+      <div class="banner-illustration">
+        <i class="fa-solid fa-person-biking delivery-icon"></i>
+      </div>
+      <div class="banner-bottom-text">
+        FlipMato Plus: Free Delivery on Everything!
+      </div>
+      <div class="banner-illustration">
+        <i class="fa-solid fa-motorcycle delivery-icon"></i>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-location">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>Location</span>
+      </div>
+
+      <div class="footer-links">
+        <a href="#">About Us</a>
+        <a href="#">Join Partner Program</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Contact</a>
+      </div>
+
+      <div class="footer-icons">
+        <i class="fa-regular fa-bell"></i>
+        <i class="fa-regular fa-user"></i>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
