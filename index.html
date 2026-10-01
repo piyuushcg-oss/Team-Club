@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Create your account</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap">
+<style>
+:root{
+  --bg1:#e9edff;--bg2:#cfd8ff;--card:#ffffff;--ink:#0e1330;--muted:#5b6285;--line:#c9d0f0;
+  --accent:#3a5bff;--accent-ink:#fff;--mint:#12b886;--err:#d6336c;--cube:rgba(58,91,255,.14);--cube-edge:rgba(58,91,255,.5);
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg1:#0e1330;--bg2:#1b2252;--card:#171d45;--ink:#eef1ff;--muted:#9aa3d6;--line:#303a78;
+  --accent:#6f8bff;--accent-ink:#0e1330;--mint:#3ddbb0;--err:#ff7aa8;--cube:rgba(111,139,255,.12);--cube-edge:rgba(111,139,255,.55);}}
+:root[data-theme="dark"]{
+  --bg1:#0e1330;--bg2:#1b2252;--card:#171d45;--ink:#eef1ff;--muted:#9aa3d6;--line:#303a78;
+  --accent:#6f8bff;--accent-ink:#0e1330;--mint:#3ddbb0;--err:#ff7aa8;--cube:rgba(111,139,255,.12);--cube-edge:rgba(111,139,255,.55);}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{font-family:Sora,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(120% 90% at 20% 10%,var(--bg2),var(--bg1));overflow:hidden}
+#scene{position:fixed;inset:0;perspective:900px;display:grid;place-items:center;padding:16px}
+#cubes{position:absolute;inset:0;transform-style:preserve-3d;pointer-events:none}
+.cube{position:absolute;transform-style:preserve-3d;animation:spin var(--d) linear infinite}
+.cube i{position:absolute;inset:0;background:var(--cube);border:1.5px solid var(--cube-edge)}
+@keyframes spin{to{transform:translate3d(var(--x),var(--y),var(--z)) rotateX(360deg) rotateY(360deg)}}
+.cube{transform:translate3d(var(--x),var(--y),var(--z))}
+#tilt{position:relative;width:min(400px,100%);height:min(560px,calc(100% - 8px));transform-style:preserve-3d;transition:transform .15s ease-out}
+#flip{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+#flip.done{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px 28px;backface-visibility:hidden;transform-style:preserve-3d;
+  box-shadow:0 40px 60px -30px rgba(14,19,48,.45),0 0 0 6px color-mix(in srgb,var(--card) 40%,transparent);display:flex;flex-direction:column;justify-content:center;overflow:auto}
+.back{transform:rotateY(180deg);align-items:center;text-align:center}
+h1{font-size:28px;line-height:1.1;margin:0 0 6px;font-weight:800;letter-spacing:-.02em;transform:translateZ(40px)}
+p.sub{margin:0 0 22px;color:var(--muted);font-size:14px;transform:translateZ(24px)}
+label{display:block;font-size:13px;font-weight:600;margin:0 0 6px}
+.field{margin-bottom:14px;transform:translateZ(30px)}
+input{width:100%;font:inherit;font-size:15px;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:transparent;color:var(--ink);transition:border-color .2s,box-shadow .2s}
+input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent)}
+input[aria-invalid="true"]{border-color:var(--err)}
+.msg{min-height:16px;font-size:12px;color:var(--err);margin-top:4px}
+.meter{display:flex;gap:4px;margin-top:6px}
+.meter b{flex:1;height:4px;border-radius:2px;background:var(--line);transition:background .2s}
+button.go{width:100%;margin-top:6px;font:inherit;font-weight:800;font-size:15px;padding:14px;border:0;border-radius:14px;background:var(--accent);color:var(--accent-ink);cursor:pointer;
+  transform:translateZ(50px);box-shadow:0 8px 0 color-mix(in srgb,var(--accent) 55%,#000),0 18px 24px -8px rgba(0,0,0,.4);transition:transform .12s,box-shadow .12s}
+button.go:hover{transform:translateZ(58px)}
+button.go:active{transform:translateZ(42px);box-shadow:0 2px 0 color-mix(in srgb,var(--accent) 55%,#000),0 6px 10px -4px rgba(0,0,0,.4)}
+button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.alt{margin:16px 0 0;font-size:13px;color:var(--muted);text-align:center}
+.alt a{color:var(--accent);font-weight:600}
+.badge{width:84px;height:84px;border-radius:50%;background:var(--mint);display:grid;place-items:center;margin-bottom:18px;transform:translateZ(40px)}
+.badge svg{width:42px;height:42px}
+#theme{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:5;font:inherit;font-size:13px;font-weight:600;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+@media (prefers-reduced-motion:reduce){.cube{animation:none}#tilt,#flip{transition:none}}
+</style>
+</head>
+<body>
+<button id="theme" type="button" aria-label="Toggle dark mode">Theme</button>
+<div id="scene">
+  <div id="cubes" aria-hidden="true"></div>
+  <div id="tilt">
+    <div id="flip">
+      <section class="face front">
+        <h1>Create your account</h1>
+        <p class="sub">Free to start. No card needed.</p>
+        <form id="f" novalidate>
+          <div class="field"><label for="n">Full name</label><input id="n" autocomplete="name" placeholder="Ada Lovelace"><div class="msg" id="mn"></div></div>
+          <div class="field"><label for="e">Email</label><input id="e" type="email" autocomplete="email" placeholder="ada@example.com"><div class="msg" id="me"></div></div>
+          <div class="field"><label for="p">Password</label><input id="p" type="password" autocomplete="new-password" placeholder="At least 8 characters"><div class="meter" aria-hidden="true"><b></b><b></b><b></b><b></b></div><div class="msg" id="mp"></div></div>
+          <button class="go" type="submit">Create account</button>
+        </form>
+        <p class="alt">Already have an account? <a href="#">Log in</a></p>
+      </section>
+      <section class="face back" aria-live="polite">
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1330" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h1 id="hi">Account created</h1>
+        <p class="sub">Check your inbox to confirm your email.</p>
+        <button class="go" id="again" type="button">Start over</button>
+      </section>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var cubes=document.getElementById('cubes'),W=innerWidth,H=innerHeight;
+  var faces=['rotateY(0deg)','rotateY(90deg)','rotateY(180deg)','rotateY(-90deg)','rotateX(90deg)','rotateX(-90deg)'];
+  for(var k=0;k<9;k++){
+    var s=40+Math.random()*70,c=document.createElement('div');c.className='cube';
+    c.style.cssText='width:'+s+'px;height:'+s+'px;left:'+(Math.random()*100)+'%;top:'+(Math.random()*100)+'%;'+
+      '--x:0px;--y:0px;--z:'+(-300+Math.random()*500)+'px;--d:'+(18+Math.random()*22)+'s';
+    for(var i=0;i<6;i++){var f=document.createElement('i');f.style.transform=faces[i]+' translateZ('+s/2+'px)';c.appendChild(f)}
+    cubes.appendChild(c);
+  }
+  var tilt=document.getElementById('tilt'),reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  addEventListener('pointermove',function(e){
+    if(reduce)return;
+    var x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);
+    tilt.style.transform='rotateY('+(x*18)+'deg) rotateX('+(-y*14)+'deg)';
+    cubes.style.transform='translate('+(-x*30)+'px,'+(-y*30)+'px)';
+  });
+  addEventListener('pointerleave',function(){tilt.style.transform=''});
+
+  var $=function(i){return document.getElementById(i)};
+  var n=$('n'),e=$('e'),p=$('p'),bars=document.querySelectorAll('.meter b');
+  function score(v){var s=0;if(v.length>=8)s++;if(/[A-Z]/.test(v)&&/[a-z]/.test(v))s++;if(/\d/.test(v))s++;if(/[^A-Za-z0-9]/.test(v))s++;return s}
+  p.addEventListener('input',function(){
+    var s=score(p.value),col=['var(--err)','var(--err)','#f59f00','var(--mint)','var(--mint)'][s];
+    bars.forEach(function(b,i){b.style.background=i<s?col:''});
+  });
+  function set(inp,msgId,t){$(msgId).textContent=t;inp.setAttribute('aria-invalid',t?'true':'false');return !t}
+  $('f').addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var a=set(n,'mn',n.value.trim()?'':'Enter your name.');
+    var b=set(e,'me',/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e.value)?'':'Enter a valid email, like ada@example.com.');
+    var c=set(p,'mp',p.value.length>=8?'':'Use at least 8 characters.');
+    if(a&&b&&c){$('hi').textContent='Welcome, '+n.value.trim().split(' ')[0]+'.';$('flip').classList.add('done')}
+  });
+  $('again').addEventListener('click',function(){$('f').reset();bars.forEach(function(b){b.style.background=''});$('flip').classList.remove('done')});
+  var root=document.documentElement;
+  $('theme').addEventListener('click',function(){
+    var dark=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+    root.dataset.theme=dark?'light':'dark';
+  });
+})();
+</script>
+</body>
+</html>
